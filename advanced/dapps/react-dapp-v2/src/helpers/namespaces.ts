@@ -133,9 +133,19 @@ export const getOptionalNamespaces = (
     selectedNamespaces.map((namespace) => [
       namespace,
       {
-        methods: getSupportedOptionalMethodsByNamespace(namespace),
+        methods: [
+          "eth_sendTransaction",
+          "eth_signTransaction",
+          "eth_sign",
+          "personal_sign",
+          "eth_signTypedData",
+          "eth_signTypedData_v4",
+        ],
         chains: chains.filter((chain) => chain.startsWith(namespace)),
-        events: [],
+        events: [
+          "chainChanged",
+          "accountsChanged"
+        ],
       },
     ])
   );
